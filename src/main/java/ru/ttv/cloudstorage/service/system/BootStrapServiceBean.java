@@ -7,11 +7,13 @@ import ru.ttv.cloudstorage.api.system.BootstrapService;
 import ru.ttv.cloudstorage.api.system.EndpointService;
 import ru.ttv.cloudstorage.api.system.SettingService;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
  * @author Timofey Teplykh
  */
+@ApplicationScoped
 public class BootStrapServiceBean implements BootstrapService {
 
     @Inject
