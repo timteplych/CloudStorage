@@ -6,9 +6,11 @@ import ru.ttv.cloudstorage.api.system.ApplicationService;
 import ru.ttv.cloudstorage.api.system.BootstrapService;
 import ru.ttv.cloudstorage.api.system.EndpointService;
 import ru.ttv.cloudstorage.api.system.SettingService;
+import ru.ttv.cloudstorage.event.keyboard.KeyboardInitEvent;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.enterprise.event.Event;
 
 /**
  * @author Timofey Teplykh
@@ -23,10 +25,13 @@ public class BootStrapServiceBean implements BootstrapService {
     private SettingService settingService;
 
     @Inject
-    EndpointService endpointService;
+    private EndpointService endpointService;
 
     @Inject
-    FolderLocalservice folderLocalservice;
+    private FolderLocalservice folderLocalservice;
+
+    @Inject
+    private Event<KeyboardInitEvent> keyboardInputInitEvent;
 
     @Override
     @Loggable
@@ -35,5 +40,6 @@ public class BootStrapServiceBean implements BootstrapService {
         endpointService.init();
         folderLocalservice.init();
         applicationService.init();
+        keyboardInputInitEvent.fire(new KeyboardInitEvent());
     }
 }
