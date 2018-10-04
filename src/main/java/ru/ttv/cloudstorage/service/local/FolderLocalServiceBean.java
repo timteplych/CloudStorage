@@ -3,13 +3,12 @@ package ru.ttv.cloudstorage.service.local;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.ttv.cloudstorage.api.annotation.Loggable;
-import ru.ttv.cloudstorage.api.local.FolderLocalservice;
+import ru.ttv.cloudstorage.api.local.FolderLocalService;
 import ru.ttv.cloudstorage.api.system.SettingService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,7 +16,7 @@ import java.util.List;
  * @author Timofey Teplykh
  */
 @ApplicationScoped
-public class FolderLocalServiceBean implements FolderLocalservice {
+public class FolderLocalServiceBean implements FolderLocalService {
 
     @Inject
     private SettingService settingService;
@@ -34,12 +33,7 @@ public class FolderLocalServiceBean implements FolderLocalservice {
     @NotNull
     public List<String> getListFolderNameRoot() {
         final File root = getRoot();
-        final String[] directories = root.list(new FilenameFilter() {
-            @Override
-            public boolean accept(File current, String name) {
-                return new File(current,name).isDirectory();
-            }
-        });
+        final String[] directories = root.list((current, name) -> new File(current,name).isDirectory());
         return Arrays.asList(directories);
     }
 

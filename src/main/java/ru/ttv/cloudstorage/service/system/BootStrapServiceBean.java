@@ -1,7 +1,7 @@
 package ru.ttv.cloudstorage.service.system;
 
 import ru.ttv.cloudstorage.api.annotation.Loggable;
-import ru.ttv.cloudstorage.api.local.FolderLocalservice;
+import ru.ttv.cloudstorage.api.local.FolderLocalService;
 import ru.ttv.cloudstorage.api.system.ApplicationService;
 import ru.ttv.cloudstorage.api.system.BootstrapService;
 import ru.ttv.cloudstorage.api.system.EndpointService;
@@ -28,7 +28,7 @@ public class BootStrapServiceBean implements BootstrapService {
     private EndpointService endpointService;
 
     @Inject
-    private FolderLocalservice folderLocalservice;
+    private FolderLocalService folderLocalservice;
 
     @Inject
     private Event<KeyboardInitEvent> keyboardInputInitEvent;

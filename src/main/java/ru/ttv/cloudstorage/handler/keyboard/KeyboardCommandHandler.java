@@ -2,13 +2,12 @@ package ru.ttv.cloudstorage.handler.keyboard;
 
 import lombok.SneakyThrows;
 import ru.ttv.cloudstorage.api.local.FileLocalService;
-import ru.ttv.cloudstorage.api.local.FolderLocalservice;
+import ru.ttv.cloudstorage.api.local.FolderLocalService;
 import ru.ttv.cloudstorage.api.remote.FileRemoteService;
 import ru.ttv.cloudstorage.api.remote.FolderRemoteService;
 import ru.ttv.cloudstorage.api.system.ApplicationService;
 import ru.ttv.cloudstorage.api.system.EndpointService;
 import ru.ttv.cloudstorage.api.system.SyncService;
-import ru.ttv.cloudstorage.event.keyboard.KeyboardInitEvent;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Event;
@@ -59,7 +58,7 @@ public class KeyboardCommandHandler {
     private FolderRemoteService folderRemoteService;
 
     @Inject
-    private FolderLocalservice folderLocalService;
+    private FolderLocalService folderLocalService;
 
     @Inject
     private FileLocalService fileLocalService;

@@ -5,7 +5,7 @@ import ru.ttv.cloudstorage.api.basic.FolderService;
 /**
  * @author Timofey Teplykh
  */
-public interface FolderLocalservice extends FolderService {
+public interface FolderLocalService extends FolderService {
 
     void init();
 

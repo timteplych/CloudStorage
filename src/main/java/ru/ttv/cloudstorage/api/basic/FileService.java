@@ -21,7 +21,7 @@ public interface FileService {
     void clearRoot();
 
     @Nullable
-    Byte[] readData(String name);
+    byte[] readData(String name);
 
     void writeData(String name, byte[] data);
 
