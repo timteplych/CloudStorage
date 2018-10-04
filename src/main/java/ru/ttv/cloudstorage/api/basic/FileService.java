@@ -10,11 +10,20 @@ import java.util.List;
  */
 public interface FileService {
 
+//    @NotNull
+//    List<String> getListFileName();
+
     @NotNull
-    List<String> getListFileName();
+    List<String> getListFileNameRoot();
+
+    void printListFileNameRoot();
+
+    void clearRoot();
 
     @Nullable
     Byte[] readData(String name);
+
+    void writeData(String name, byte[] data);
 
     boolean exist(String name);
 

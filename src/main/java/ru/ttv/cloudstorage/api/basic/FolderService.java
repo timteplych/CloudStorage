@@ -9,11 +9,18 @@ import java.util.List;
  */
 public interface FolderService {
 
-    @NotNull
-    List<String> getListFolderName();
+//    @NotNull
+//    List<String> getListFolderName();
+
+    void printListFolderNameRoot();
 
     @NotNull
     List<String> getListFolderNameRoot();
 
     void createFolder(String folderName);
+
+    void removeFolder(String folderName);
+
+    void clearRoot();
+
 }

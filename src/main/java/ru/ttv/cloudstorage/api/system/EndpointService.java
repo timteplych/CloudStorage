@@ -6,5 +6,5 @@ package ru.ttv.cloudstorage.api.system;
 public interface EndpointService {
 
     void init();
-
+    void start();
 }

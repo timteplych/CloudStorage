@@ -10,4 +10,9 @@ public class EndPointServiceBean implements EndpointService {
     public void init() {
 
     }
+
+    @Override
+    public void start() {
+
+    }
 }
