@@ -23,12 +23,12 @@ public interface FileService {
     @Nullable
     byte[] readData(String name);
 
-    void writeData(String name, byte[] data);
+    void writeData(String fileName, byte[] data);
 
     boolean exist(String name);
 
     void remove(String name);
 
-    void createTextFile(String name, String text);
+    void createTextFile(String fileName, String text);
 
 }

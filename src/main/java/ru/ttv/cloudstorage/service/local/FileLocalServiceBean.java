@@ -84,9 +84,9 @@ public class FileLocalServiceBean implements FileLocalService {
     }
 
     @Override
-    public void createTextFile(@Nullable final String name, @Nullable final String text) {
+    public void createTextFile(@Nullable final String fileName, @Nullable final String text) {
         if(text == null) return;
-        writeData(name,text.getBytes());
+        writeData(fileName,text.getBytes());
     }
 
     @NotNull
