@@ -1,5 +1,6 @@
 package ru.ttv.cloudstorage.handler.keyboard;
 
+import ru.ttv.cloudstorage.event.keyboard.KeyboardCommandEvent;
 import ru.ttv.cloudstorage.event.keyboard.KeyboardInitEvent;
 
 import javax.enterprise.context.ApplicationScoped;

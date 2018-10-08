@@ -15,5 +15,25 @@ public class SyncServiceBean implements SyncService {
     private TimerService timerService;
 
     @Inject
-    private Event<SyncRemoteToLocalEvent> syncRemoteToLocalEventEvent
+    private Event<SyncRemoteToLocalEvent> syncRemoteToLocalEvent;
+
+    @Override
+    public boolean status() {
+        return false;
+    }
+
+    @Override
+    public void sync() {
+
+    }
+
+    @Override
+    public boolean start() {
+        return false;
+    }
+
+    @Override
+    public boolean stop() {
+        return false;
+    }
 }

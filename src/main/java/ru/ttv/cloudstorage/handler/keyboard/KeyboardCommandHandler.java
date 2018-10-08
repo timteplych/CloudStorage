@@ -8,6 +8,7 @@ import ru.ttv.cloudstorage.api.remote.FolderRemoteService;
 import ru.ttv.cloudstorage.api.system.ApplicationService;
 import ru.ttv.cloudstorage.api.system.EndpointService;
 import ru.ttv.cloudstorage.api.system.SyncService;
+import ru.ttv.cloudstorage.event.keyboard.KeyboardCommandEvent;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Event;
@@ -113,10 +114,10 @@ public class KeyboardCommandHandler {
                 folderLocalService.printListFolderNameRoot();
                 break;
             case CMD_REMOTE_FILES:
-                fileRemoteService.printListFolderNameRoot();
+                fileRemoteService.printListFileNameRoot();
                 break;
             case CMD_LOCAL_FILES:
-                fileLocalService.printListFolderNameRoot();
+                fileLocalService.printListFileNameRoot();
                 break;
             case CMD_REMOTE_FILES_CLEAR:
                 fileRemoteService.clearRoot();
