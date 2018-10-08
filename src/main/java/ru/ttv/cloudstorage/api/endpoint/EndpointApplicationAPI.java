@@ -1,4 +1,4 @@
-package ru.ttv.cloudstorage.endpoint;
+package ru.ttv.cloudstorage.api.endpoint;
 
 import ru.ttv.cloudstorage.dto.ResultDTO;
 
@@ -7,7 +7,7 @@ import javax.jws.WebMethod;
 /**
  * @author Timofey Teplykh
  */
-public interface EndpointApplicationAPI {
+public interface EndpointApplicationAPI extends EndpointAPI {
 
     @WebMethod
     public ResultDTO ping();
@@ -17,6 +17,12 @@ public interface EndpointApplicationAPI {
 
     @WebMethod
     public ResultDTO connected();
+
+    @WebMethod
+    public ResultDTO login();
+
+    @WebMethod
+    public ResultDTO logout();
 
     @WebMethod
     public ResultDTO status();
@@ -29,4 +35,5 @@ public interface EndpointApplicationAPI {
 
     @WebMethod
     public ResultDTO stop();
+
 }

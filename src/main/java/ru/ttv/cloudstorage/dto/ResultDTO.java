@@ -6,6 +6,9 @@ package ru.ttv.cloudstorage.dto;
 public class ResultDTO {
     private boolean status;
 
+    public ResultDTO() {
+    }
+
     public ResultDTO(boolean status) {
         this.status = status;
     }

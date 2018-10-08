@@ -1,5 +1,6 @@
 package ru.ttv.cloudstorage.endpoint;
 
+import ru.ttv.cloudstorage.api.endpoint.EndpointApplicationAPI;
 import ru.ttv.cloudstorage.api.system.ApplicationService;
 import ru.ttv.cloudstorage.api.system.SyncService;
 import ru.ttv.cloudstorage.dto.ResultDTO;
@@ -62,7 +63,7 @@ public class EndpointApplication implements EndpointApplicationAPI {
     @WebMethod
     public ResultDTO sync(){
         syncService.sync();
-        return new SuccessDTO();
+        return new SuccesDTO();
     }
 
     @Override
