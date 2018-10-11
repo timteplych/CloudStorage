@@ -38,8 +38,8 @@ public class EndpointApplication implements EndpointApplicationAPI {
 
     @Override
     @WebMethod
-    public String connected(@WebParam(name="EmpDetail")String msg){
-        return (new ResultDTO(applicationService.status())).toString()+msg;
+    public String connected(){
+        return (new ResultDTO(applicationService.status())).toString();
     }
 
     @Override

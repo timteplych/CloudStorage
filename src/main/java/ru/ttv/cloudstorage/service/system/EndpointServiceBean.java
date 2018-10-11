@@ -38,7 +38,7 @@ public class EndpointServiceBean implements EndpointService {
     @Override
     public void init() {
         //registry(endpointStorageAPI, endpointCloudAPI, endpointSettingAPI, endpointSyncAPI, endpointApplicationAPI);
-        registry(endpointApplicationAPI);
+        registry(endpointCloudAPI,endpointApplicationAPI);
     }
 
     private void registry(EndpointAPI... services){

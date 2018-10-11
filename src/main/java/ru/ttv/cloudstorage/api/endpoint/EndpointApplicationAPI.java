@@ -11,30 +11,30 @@ import javax.jws.WebParam;
 public interface EndpointApplicationAPI extends EndpointAPI {
 
     @WebMethod
-    public ResultDTO ping();
+    ResultDTO ping();
 
     @WebMethod
-    public ResultDTO shutdown();
+    ResultDTO shutdown();
 
     @WebMethod
-    public String connected(@WebParam( name = "EmpDetail") String msg);
+    String connected();
 
     @WebMethod
-    public ResultDTO login();
+    ResultDTO login();
 
     @WebMethod
-    public ResultDTO logout();
+    ResultDTO logout();
 
     @WebMethod
-    public ResultDTO status();
+    ResultDTO status();
 
     @WebMethod
-    public ResultDTO sync();
+    ResultDTO sync();
 
     @WebMethod
-    public ResultDTO start();
+    ResultDTO start();
 
     @WebMethod
-    public ResultDTO stop();
+    ResultDTO stop();
 
 }
