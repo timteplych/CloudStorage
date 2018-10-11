@@ -9,6 +9,13 @@
     <name>CloudStorage</name>
     <url>http://maven.apache.org</url>
 
+    <developers>
+        <developer>
+            <id>teplykh</id>
+            <email>timteplych@mail.ru</email>
+        </developer>
+    </developers>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>

@@ -3,6 +3,7 @@ package ru.ttv.cloudstorage.service.system;
 import ru.ttv.cloudstorage.api.system.SyncService;
 import ru.ttv.cloudstorage.api.system.TimerService;
 
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 
 

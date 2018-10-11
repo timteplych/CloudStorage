@@ -40,6 +40,6 @@ public class BootStrapServiceBean implements BootstrapService {
         endpointService.init();
         folderLocalservice.init();
         applicationService.init();
-        keyboardInputInitEvent.fire(new KeyboardInitEvent());
+        //keyboardInputInitEvent.fire(new KeyboardInitEvent());
     }
 }

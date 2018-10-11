@@ -3,6 +3,7 @@ package ru.ttv.cloudstorage.api.endpoint;
 import ru.ttv.cloudstorage.dto.ResultDTO;
 
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 
 /**
  * @author Timofey Teplykh
@@ -16,7 +17,7 @@ public interface EndpointApplicationAPI extends EndpointAPI {
     public ResultDTO shutdown();
 
     @WebMethod
-    public ResultDTO connected();
+    public String connected(@WebParam( name = "EmpDetail") String msg);
 
     @WebMethod
     public ResultDTO login();

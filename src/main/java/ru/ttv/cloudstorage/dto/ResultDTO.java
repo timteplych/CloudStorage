@@ -12,4 +12,11 @@ public class ResultDTO {
     public ResultDTO(boolean status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "ResultDTO{" +
+                "status=" + status +
+                '}';
+    }
 }

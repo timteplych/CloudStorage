@@ -8,6 +8,7 @@ import ru.ttv.cloudstorage.dto.SuccesDTO;
 
 import javax.inject.Inject;
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
 
 /**
@@ -37,8 +38,8 @@ public class EndpointApplication implements EndpointApplicationAPI {
 
     @Override
     @WebMethod
-    public ResultDTO connected(){
-        return new ResultDTO(applicationService.status());
+    public String connected(@WebParam(name="EmpDetail")String msg){
+        return (new ResultDTO(applicationService.status())).toString()+msg;
     }
 
     @Override
