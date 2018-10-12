@@ -1,5 +1,6 @@
 package ru.ttv.cloudstorage.service.system;
 
+
 import javax.enterprise.event.Event;
 import javax.enterprise.event.NotificationOptions;
 import javax.enterprise.util.TypeLiteral;
@@ -9,7 +10,7 @@ import java.util.concurrent.CompletionStage;
 /**
  * @author Timofey Teplykh
  */
-public class SyncRemoteToLocalEvent implements Event {
+public class SyncLocalToRemoteEvent implements Event {
     @Override
     public void fire(Object o) {
 

@@ -55,13 +55,13 @@ public class EndpointCloud implements EndpointCloudAPI {
 
     @Override
     @WebMethod
-    public String exist(@WebParam(name="FileName")String fileName) {
+    public String fileExist(@WebParam(name="FileName")String fileName) {
         return Boolean.toString(fileRemoteService.exist(fileName));
     }
 
     @Override
     @WebMethod
-    public void remove(@WebParam(name="FileName")String fileName) {
+    public void removeFile(@WebParam(name="FileName")String fileName) {
         fileRemoteService.remove(fileName);
     }
 

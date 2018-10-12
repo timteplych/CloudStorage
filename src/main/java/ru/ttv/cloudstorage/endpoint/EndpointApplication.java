@@ -8,7 +8,6 @@ import ru.ttv.cloudstorage.dto.SuccesDTO;
 
 import javax.inject.Inject;
 import javax.jws.WebMethod;
-import javax.jws.WebParam;
 import javax.jws.WebService;
 
 /**
