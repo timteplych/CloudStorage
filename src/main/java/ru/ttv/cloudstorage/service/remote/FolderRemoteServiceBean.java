@@ -10,8 +10,10 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
+import javax.jcr.Session;
 import javax.jcr.nodetype.NodeType;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,6 +24,7 @@ public class FolderRemoteServiceBean implements FolderRemoteService {
 
     @Inject
     private ApplicationService applicationService;
+
 
     @Override
     @NotNull
@@ -48,7 +51,25 @@ public class FolderRemoteServiceBean implements FolderRemoteService {
     public void createFolder(String folderName) {
         @Nullable final Node root = applicationService.getRootNode();
         if(root == null) return;
-        root.addNode(folderName,"nt:folder");
+        String[] folderArr = folderName.split("/");
+        String currentPath="";
+        Node currentNode = root;
+        Session session = applicationService.session();
+        if(folderArr.length == 1){
+            root.addNode(folderName,"nt:folder");
+        }else{
+            for (int i = 0; i < folderArr.length-1; i++) {
+                currentPath = currentPath + "/"+folderArr[i];
+                if(session.nodeExists(currentPath)){
+                    currentNode = session.getNode(currentPath);
+                }else{
+                    currentNode = currentNode.addNode(folderArr[i]);
+                }
+            }
+        }
+        //System.out.println(Arrays.deepToString(folderMas));
+
+
         applicationService.save();
     }
 

@@ -30,8 +30,8 @@ public class BootStrapServiceBean implements BootstrapService {
     @Inject
     private FolderLocalService folderLocalservice;
 
-    @Inject
-    private Event<KeyboardInitEvent> keyboardInputInitEvent;
+    //@Inject
+    //private Event<KeyboardInitEvent> keyboardInputInitEvent;
 
     @Override
     @Loggable

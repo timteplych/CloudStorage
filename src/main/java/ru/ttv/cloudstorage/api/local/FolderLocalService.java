@@ -9,4 +9,5 @@ public interface FolderLocalService extends FolderService {
 
     void init();
 
+
 }

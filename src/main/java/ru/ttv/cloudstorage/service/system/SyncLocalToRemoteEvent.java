@@ -1,6 +1,8 @@
 package ru.ttv.cloudstorage.service.system;
 
 
+import ru.ttv.cloudstorage.api.sync.SyncLocalToRemoteEventAPI;
+
 import javax.enterprise.event.Event;
 import javax.enterprise.event.NotificationOptions;
 import javax.enterprise.util.TypeLiteral;
@@ -10,34 +12,10 @@ import java.util.concurrent.CompletionStage;
 /**
  * @author Timofey Teplykh
  */
-public class SyncLocalToRemoteEvent implements Event {
-    @Override
-    public void fire(Object o) {
-
-    }
+public class SyncLocalToRemoteEvent implements SyncLocalToRemoteEventAPI {
 
     @Override
-    public CompletionStage fireAsync(Object o) {
-        return null;
-    }
-
-    @Override
-    public CompletionStage fireAsync(Object o, NotificationOptions notificationOptions) {
-        return null;
-    }
-
-    @Override
-    public Event select(Annotation... annotations) {
-        return null;
-    }
-
-    @Override
-    public Event select(Class aClass, Annotation... annotations) {
-        return null;
-    }
-
-    @Override
-    public Event select(TypeLiteral typeLiteral, Annotation... annotations) {
-        return null;
+    public void fire() {
+        System.out.println("local to remote");
     }
 }

@@ -16,16 +16,16 @@ public class SyncServiceBean implements SyncService {
     private TimerService timerService;
 
     @Inject
-    private Event<SyncRemoteToLocalEvent> syncRemoteToLocalEvent;
+    private SyncRemoteToLocalEvent syncRemoteToLocalEvent;
 
     @Inject
-    private Event<SyncLocalToRemoteEvent> syncLocalToRemoteEvent;
+    private SyncLocalToRemoteEvent syncLocalToRemoteEvent;
 
     @Override
     public void sync() {
-
-        syncRemoteToLocalEvent.fire(new SyncRemoteToLocalEvent());
-        syncLocalToRemoteEvent.fire(new SyncLocalToRemoteEvent());
+        System.out.println("sync");
+        syncRemoteToLocalEvent.fire();
+        syncLocalToRemoteEvent.fire();
     }
 
     @Override
