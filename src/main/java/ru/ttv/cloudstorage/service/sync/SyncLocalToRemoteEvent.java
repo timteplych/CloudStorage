@@ -16,6 +16,6 @@ public class SyncLocalToRemoteEvent implements SyncLocalToRemoteEventAPI {
 
     @Override
     public void fire() {
-        System.out.println("local to remote");
+        //System.out.println("local to remote");
     }
 }

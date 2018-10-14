@@ -27,8 +27,8 @@ public class FileLocalServiceBean implements FileLocalService {
 
     @NotNull
     @Override
-    public List<String> getListFileNameRoot() {
-        final File file = new File(settingService.getSyncFolder());
+    public List<String> getListFileNameRoot(final String folder) {
+        final File file = new File(folder);
         final String[] directories = file.list((current, name) -> new File(current,name).isFile());
         if(directories == null) return Collections.emptyList();
         return Arrays.asList(directories);
@@ -36,7 +36,7 @@ public class FileLocalServiceBean implements FileLocalService {
 
     @Override
     public void printListFileNameRoot() {
-        for (String name: getListFileNameRoot()){
+        for (String name: getListFileNameRoot("")){
             System.out.println(name);
         }
     }
@@ -44,7 +44,7 @@ public class FileLocalServiceBean implements FileLocalService {
     @Override
     public void clearRoot() {
         final File root = new File(settingService.getSyncFolder());
-        final List<String> files = getListFileNameRoot();
+        final List<String> files = getListFileNameRoot(settingService.getSyncFolder());
         for(final String name: files){
             final File file = new File(root,name);
             file.delete();

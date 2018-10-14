@@ -85,9 +85,16 @@ public class FileRemoteServiceBean implements FileRemoteService {
 
     @NotNull
     @Override
-    public List<String> getListFileNameRoot() {
+    public List<String> getListFileNameRoot(String folder) {
+        Node root = null;
         try {
-            final Node root = applicationService.getRootNode();
+            if(folder == null || folder.isEmpty()){
+                root = applicationService.getRootNode();
+            }else{
+                final Session session = applicationService.session();
+                root = session.getNode(folder);
+            }
+
             if(root == null) return Collections.emptyList();
             final List<String> result = new ArrayList<>();
             final NodeIterator nt = root.getNodes();
@@ -106,7 +113,7 @@ public class FileRemoteServiceBean implements FileRemoteService {
 
     @Override
     public void printListFileNameRoot() {
-        for(final String name: getListFileNameRoot()){
+        for(final String name: getListFileNameRoot("")){
             System.out.println(name);
         }
     }
