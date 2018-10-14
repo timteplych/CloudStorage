@@ -76,6 +76,11 @@ public class EndpointStorage implements EndpointStorageAPI {
     }
 
     @Override
+    public void createTextFile(@WebParam(name="FileName")String fileName, @WebParam(name="Text")String text) {
+        fileLocalService.createTextFile(fileName, text);
+    }
+
+    @Override
     @WebMethod
     public String getListFileNameRoot() {
         return fileLocalService.getListFileNameRoot().toString();

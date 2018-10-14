@@ -31,6 +31,9 @@ public interface EndpointDataAPI extends EndpointAPI {
     void removeFile(@WebParam(name="FileName")String fileName);
 
     @WebMethod
+    void createTextFile(@WebParam(name="FileName")String fileName, @WebParam(name="Text")String text);
+
+    @WebMethod
     public void writeData(@WebParam(name="FileName")String fileName, @WebParam(name="DataBytes") byte[] dataBytes);
 
     @WebMethod

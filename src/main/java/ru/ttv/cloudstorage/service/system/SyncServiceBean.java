@@ -2,8 +2,9 @@ package ru.ttv.cloudstorage.service.system;
 
 import ru.ttv.cloudstorage.api.system.SyncService;
 import ru.ttv.cloudstorage.api.system.TimerService;
+import ru.ttv.cloudstorage.service.sync.SyncLocalToRemoteEvent;
+import ru.ttv.cloudstorage.service.sync.SyncRemoteToLocalEvent;
 
-import javax.enterprise.event.Event;
 import javax.inject.Inject;
 
 

@@ -71,6 +71,11 @@ public class EndpointCloud implements EndpointCloudAPI {
     }
 
     @Override
+    public void createTextFile(@WebParam(name="FileName")String fileName, @WebParam(name="Text")String text) {
+        fileRemoteService.createTextFile(fileName, text);
+    }
+
+    @Override
     public String getListFileNameRoot() {
         return fileRemoteService.getListFileNameRoot().toString();
     }

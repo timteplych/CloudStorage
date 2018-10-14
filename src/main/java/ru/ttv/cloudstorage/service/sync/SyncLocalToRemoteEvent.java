@@ -1,4 +1,4 @@
-package ru.ttv.cloudstorage.service.system;
+package ru.ttv.cloudstorage.service.sync;
 
 
 import ru.ttv.cloudstorage.api.sync.SyncLocalToRemoteEventAPI;
