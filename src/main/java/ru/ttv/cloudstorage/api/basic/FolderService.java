@@ -15,7 +15,7 @@ public interface FolderService {
     void printListFolderNameRoot();
 
     @NotNull
-    List<String> getListFolderNameRoot();
+    List<String> getListFolderNameRoot(String folderName);
 
     void createFolder(String folderName);
 

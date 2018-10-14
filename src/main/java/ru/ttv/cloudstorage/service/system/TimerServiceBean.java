@@ -37,7 +37,7 @@ public class TimerServiceBean implements TimerService {
         if(task!=null) return false;
         final Integer timeout = settingService.getSyncTimeout();
         task = CDI.current().select(SyncTask.class).get();
-        timer.schedule(task.get(),0,timeout);
+        timer.schedule(task.get(),10000,timeout);
         return true;
     }
 

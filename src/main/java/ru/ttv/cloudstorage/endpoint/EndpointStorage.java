@@ -30,7 +30,7 @@ public class EndpointStorage implements EndpointStorageAPI {
     @Override
     @WebMethod
     public String getListFolderNameRoot() {
-        return folderLocalService.getListFolderNameRoot().toString();
+        return folderLocalService.getListFolderNameRoot("").toString();
     }
 
     @Override
@@ -83,7 +83,7 @@ public class EndpointStorage implements EndpointStorageAPI {
     @Override
     @WebMethod
     public String getListFileNameRoot() {
-        return fileLocalService.getListFileNameRoot().toString();
+        return fileLocalService.getListFileNameRoot("").toString();
     }
 
     @Override

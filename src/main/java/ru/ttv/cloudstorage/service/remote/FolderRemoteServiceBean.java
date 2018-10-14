@@ -28,10 +28,16 @@ public class FolderRemoteServiceBean implements FolderRemoteService {
 
     @Override
     @NotNull
-    public List<String> getListFolderNameRoot() {
+    public List<String> getListFolderNameRoot(String folder) {
         final List<String> result = new ArrayList<>();
+        Node root = null;
         try {
-            final Node root = applicationService.getRootNode();
+            if(folder == null || folder.isEmpty()){
+                root = applicationService.getRootNode();
+            }else{
+                root = applicationService.session().getNode(folder);
+            }
+
             final NodeIterator nt = root.getNodes();
             while (nt.hasNext()){
                 final Node node = nt.nextNode();
@@ -75,7 +81,7 @@ public class FolderRemoteServiceBean implements FolderRemoteService {
 
     @Override
     public void printListFolderNameRoot() {
-        for (final String name: getListFolderNameRoot()){
+        for (final String name: getListFolderNameRoot("")){
             System.out.println(name);
         }
     }
@@ -100,5 +106,7 @@ public class FolderRemoteServiceBean implements FolderRemoteService {
         final Node root = applicationService.getRootNode();
         final Node node = root.getNode(folderName);
         node.remove();
+
+        applicationService.save();
     }
 }

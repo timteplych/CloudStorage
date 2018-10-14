@@ -25,7 +25,7 @@ public class EndpointCloud implements EndpointCloudAPI {
     @Override
     @WebMethod
     public String getListFolderNameRoot() {
-        List<String> folderList = folderRemoteService.getListFolderNameRoot();
+        List<String> folderList = folderRemoteService.getListFolderNameRoot("");
         return folderList.toString();
     }
 
@@ -37,7 +37,7 @@ public class EndpointCloud implements EndpointCloudAPI {
 
     @Override
     @WebMethod
-    public void removeFolder(String folderName) {
+    public void removeFolder(@WebParam(name="FolderName")String folderName) {
         folderRemoteService.removeFolder(folderName);
     }
 
@@ -77,7 +77,7 @@ public class EndpointCloud implements EndpointCloudAPI {
 
     @Override
     public String getListFileNameRoot() {
-        return fileRemoteService.getListFileNameRoot().toString();
+        return fileRemoteService.getListFileNameRoot("").toString();
     }
 
     @Override
