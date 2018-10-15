@@ -33,25 +33,26 @@ public class SyncRemoteToLocalEvent implements SyncRemoteToLocalEventAPI {
 
     @Override
     public void fire() {
-        //synchronization of folders
-        createNestedFolders("");
-
-        //synchronization of files
-
+        synchronize("");
     }
 
-    private void createNestedFolders(String folder) {
+    private void synchronize(String folder) {
         List<String> subFolders = folderRemoteService.getListFolderNameRoot(folder);
         for (int i = 0; i <= subFolders.size()-1 ; i++) {
             String currentFolder = subFolders.get(i);
             folderLocalService.createFolder(folder+"/"+currentFolder);
-            synchronizeFiles(currentFolder);
-            createNestedFolders(folder+"/"+currentFolder);
+            synchronizeFiles(folder+"/"+currentFolder);
+            synchronize(folder+"/"+currentFolder);
         }
     }
 
     private void synchronizeFiles(String currentFolder) {
-        
+        List<String> files = fileRemoteService.getListFileNameRoot(currentFolder);
+        for (int i = 0; i <= files.size()-1 ; i++) {
+            if(!fileLocalService.exist(files.get(i),currentFolder)){
+                fileLocalService.writeData(files.get(i),currentFolder,fileRemoteService.readData(files.get(i),currentFolder));
+            }
+        }
     }
 
 

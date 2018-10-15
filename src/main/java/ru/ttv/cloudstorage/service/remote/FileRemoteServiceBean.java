@@ -9,10 +9,7 @@ import ru.ttv.cloudstorage.api.system.ApplicationService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.jcr.Binary;
-import javax.jcr.Node;
-import javax.jcr.NodeIterator;
-import javax.jcr.Session;
+import javax.jcr.*;
 import javax.jcr.nodetype.NodeType;
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
@@ -32,20 +29,32 @@ public class FileRemoteServiceBean implements FileRemoteService {
     @Nullable
     @Override
     @SneakyThrows
-    public byte[] readData(String name) {
+    public byte[] readData(String name, String folder) {
+        Node root;
         if(name == null || name.isEmpty()) return new byte[]{};
-        final Node root = applicationService.getRootNode();
+        if(folder == null || folder.isEmpty()){
+            root = applicationService.getRootNode();
+        }else{
+            root = applicationService.session().getNode(folder);
+        }
         if(root == null) return new byte[]{};
         final Node node = root.getNode(name);
-        final Binary binary = node.getProperty("jcr:data").getBinary();
+        final Node propertyNode = node.getNode("jcr:content");
+        final Binary binary = propertyNode.getProperty("jcr:data").getBinary();
         return IOUtils.toByteArray(binary.getStream());
     }
 
     @Override
     @SneakyThrows
-    public boolean exist(String name) {
+    public boolean exist(String name, String folder) {
+        Node root;
         if(name == null || name.isEmpty()) return false;
-        final Node root = applicationService.getRootNode();
+        if(folder == null || folder.isEmpty()){
+            root = applicationService.getRootNode();
+        }else{
+            root = applicationService.session().getNode(folder);
+        }
+
         if(root == null) return false;
         return root.hasNode(name);
     }
@@ -62,18 +71,25 @@ public class FileRemoteServiceBean implements FileRemoteService {
 
     @Override
     @SneakyThrows
-    public void createTextFile(@Nullable final String fileName,@Nullable final String text) {
+    public void createTextFile(@Nullable final String fileName, String folder, @Nullable final String text) {
         if(text == null) return;
-        writeData(fileName, text.getBytes());
+        writeData(fileName, folder, text.getBytes());
+        applicationService.save();
     }
 
     @Override
     @SneakyThrows
-    public void writeData(@Nullable final String fileName, byte[] data) {
+    public void writeData(@Nullable final String fileName,String folder, byte[] data) {
         if(fileName == null || fileName.isEmpty()) return;
         final Session session = applicationService.session();
         if(session == null) return;
-        final Node root = session.getRootNode();
+        Node root;
+        if(folder == null || folder.isEmpty()){
+            root = session.getRootNode();
+        }else{
+            root = session.getNode(folder);
+        }
+
         final Node file = root.addNode(fileName,"nt:file");
         final Node contentNode = file.addNode("jcr:content", "nt:resource");
         final ByteArrayInputStream stream = new ByteArrayInputStream(data);

@@ -3,8 +3,6 @@ package ru.ttv.cloudstorage.endpoint;
 import ru.ttv.cloudstorage.api.endpoint.EndpointApplicationAPI;
 import ru.ttv.cloudstorage.api.system.ApplicationService;
 import ru.ttv.cloudstorage.api.system.SyncService;
-import ru.ttv.cloudstorage.dto.ResultDTO;
-import ru.ttv.cloudstorage.dto.SuccesDTO;
 
 import javax.inject.Inject;
 import javax.jws.WebMethod;
@@ -24,58 +22,58 @@ public class EndpointApplication implements EndpointApplicationAPI {
 
     @Override
     @WebMethod
-    public ResultDTO ping(){
-        return new SuccesDTO();
+    public String ping(){
+        return "success";
     }
 
     @Override
     @WebMethod
-    public ResultDTO shutdown(){
+    public String shutdown(){
         applicationService.shutdown();
-        return new SuccesDTO();
+        return "success";
     }
 
     @Override
     @WebMethod
     public String connected(){
-        return (new ResultDTO(applicationService.status())).toString();
+        return (Boolean.toString(applicationService.status()));
     }
 
     @Override
     @WebMethod
-    public ResultDTO login(){
-        return new ResultDTO(applicationService.login());
+    public String login(){
+        return Boolean.toString(applicationService.login());
     }
 
     @Override
     @WebMethod
-    public ResultDTO logout(){
-        return new ResultDTO(applicationService.logout());
+    public String logout(){
+        return Boolean.toString(applicationService.logout());
     }
 
     @Override
     @WebMethod
-    public ResultDTO status(){
-        return new ResultDTO(syncService.status());
+    public String status(){
+        return Boolean.toString(syncService.status());
     }
 
     @Override
     @WebMethod
-    public ResultDTO sync(){
+    public String sync(){
         syncService.sync();
-        return new SuccesDTO();
+        return "success";
     }
 
     @Override
     @WebMethod
-    public ResultDTO start(){
-        return new ResultDTO(syncService.start());
+    public String start(){
+        return Boolean.toString(syncService.start());
     }
 
     @Override
     @WebMethod
-    public ResultDTO stop(){
-        return new ResultDTO(syncService.stop());
+    public String stop(){
+        return Boolean.toString(syncService.stop());
     }
 
 

@@ -10,9 +10,6 @@ import java.util.List;
  */
 public interface FileService {
 
-//    @NotNull
-//    List<String> getListFileName();
-
     @NotNull
     List<String> getListFileNameRoot(String folder);
 
@@ -21,14 +18,14 @@ public interface FileService {
     void clearRoot();
 
     @Nullable
-    byte[] readData(String name);
+    byte[] readData(String name, String folder);
 
-    void writeData(String fileName, byte[] data);
+    void writeData(String fileName, String folder, byte[] data);
 
-    boolean exist(String name);
+    boolean exist(String name, String folder);
 
     void remove(String name);
 
-    void createTextFile(String fileName, String text);
+    void createTextFile(String fileName, String folder, String text);
 
 }

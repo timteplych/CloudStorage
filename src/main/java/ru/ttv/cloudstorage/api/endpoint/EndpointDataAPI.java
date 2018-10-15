@@ -22,19 +22,19 @@ public interface EndpointDataAPI extends EndpointAPI {
 
     //File methods
     @WebMethod
-    byte[] readData(@WebParam(name="FileName")String fileName);
+    byte[] readData(@WebParam(name="FileName")String fileName, @WebParam(name="Folder")String folder);
 
     @WebMethod
-    String fileExist(@WebParam(name="FileName")String fileName);
+    String fileExist(@WebParam(name="FileName")String fileName, @WebParam(name="Folder")String folder);
 
     @WebMethod
     void removeFile(@WebParam(name="FileName")String fileName);
 
     @WebMethod
-    void createTextFile(@WebParam(name="FileName")String fileName, @WebParam(name="Text")String text);
+    void createTextFile(@WebParam(name="FileName")String fileName,  @WebParam(name="Folder")String folder, @WebParam(name="Text")String text);
 
     @WebMethod
-    public void writeData(@WebParam(name="FileName")String fileName, @WebParam(name="DataBytes") byte[] dataBytes);
+    public void writeData(@WebParam(name="FileName")String fileName, @WebParam(name="Folder")String folder, @WebParam(name="DataBytes") byte[] dataBytes);
 
     @WebMethod
     public String getListFileNameRoot();

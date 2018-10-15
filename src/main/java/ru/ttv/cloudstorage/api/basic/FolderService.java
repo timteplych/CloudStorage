@@ -9,9 +9,6 @@ import java.util.List;
  */
 public interface FolderService {
 
-//    @NotNull
-//    List<String> getListFolderName();
-
     void printListFolderNameRoot();
 
     @NotNull

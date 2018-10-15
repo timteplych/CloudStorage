@@ -5,8 +5,5 @@ package ru.ttv.cloudstorage.api.endpoint;
  */
 public interface EndpointCloudAPI extends EndpointDataAPI {
 
-    //Folder methods
-
-    //File methods
 
 }

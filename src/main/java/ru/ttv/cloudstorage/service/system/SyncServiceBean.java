@@ -24,7 +24,6 @@ public class SyncServiceBean implements SyncService {
 
     @Override
     public void sync() {
-        //System.out.println("sync");
         syncRemoteToLocalEvent.fire();
         syncLocalToRemoteEvent.fire();
     }

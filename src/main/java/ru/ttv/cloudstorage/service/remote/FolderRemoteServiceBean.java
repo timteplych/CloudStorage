@@ -13,7 +13,6 @@ import javax.jcr.NodeIterator;
 import javax.jcr.Session;
 import javax.jcr.nodetype.NodeType;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -73,9 +72,6 @@ public class FolderRemoteServiceBean implements FolderRemoteService {
                 }
             }
         }
-        //System.out.println(Arrays.deepToString(folderMas));
-
-
         applicationService.save();
     }
 
@@ -106,7 +102,6 @@ public class FolderRemoteServiceBean implements FolderRemoteService {
         final Node root = applicationService.getRootNode();
         final Node node = root.getNode(folderName);
         node.remove();
-
         applicationService.save();
     }
 }

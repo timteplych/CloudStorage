@@ -29,9 +29,9 @@ public class FileLocalServiceBean implements FileLocalService {
     @Override
     public List<String> getListFileNameRoot(final String folder) {
         final File file = new File(folder);
-        final String[] directories = file.list((current, name) -> new File(current,name).isFile());
-        if(directories == null) return Collections.emptyList();
-        return Arrays.asList(directories);
+        final String[] files = file.list((current, name) -> new File(current,name).isFile());
+        if(files == null) return Collections.emptyList();
+        return Arrays.asList(files);
     }
 
     @Override
@@ -54,16 +54,16 @@ public class FileLocalServiceBean implements FileLocalService {
     @Nullable
     @Override
     @SneakyThrows
-    public byte[] readData(@Nullable final String name) {
+    public byte[] readData(@Nullable final String name, String folder) {
         if(name == null || name.isEmpty()) return new byte[]{};
-        final File file = new File(getRoot(),name);
+        final File file = new File(getRoot()+folder,name);
         return Files.readAllBytes(file.toPath());
     }
 
     @Override
-    public boolean exist(@Nullable final String name) {
+    public boolean exist(@Nullable final String name, String folder) {
         if(name == null || name.isEmpty()) return false;
-        final File file = new File(getRoot(), name);
+        final File file = new File(getRoot()+folder, name);
         return file.exists();
     }
 
@@ -76,17 +76,17 @@ public class FileLocalServiceBean implements FileLocalService {
 
     @Override
     @SneakyThrows
-    public void writeData(@Nullable final String name, byte[] data ) {
+    public void writeData(@Nullable final String name, String folder, byte[] data ) {
         if(name == null || name.isEmpty()) return;
-        final File file = new File(getRoot(), name);
+        final File file = new File(getRoot()+folder, name);
         final Path path = Paths.get(file.toURI());
         Files.write(path,data);
     }
 
     @Override
-    public void createTextFile(@Nullable final String fileName, @Nullable final String text) {
+    public void createTextFile(@Nullable final String fileName, String folder, @Nullable final String text) {
         if(text == null) return;
-        writeData(fileName,text.getBytes());
+        writeData(fileName, folder, text.getBytes());
     }
 
     @NotNull

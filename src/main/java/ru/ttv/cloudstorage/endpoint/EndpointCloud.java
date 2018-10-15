@@ -49,14 +49,14 @@ public class EndpointCloud implements EndpointCloudAPI {
 
     @Override
     @WebMethod
-    public byte[] readData(@WebParam(name="FileName")String fileName) {
-        return fileRemoteService.readData(fileName);
+    public byte[] readData(@WebParam(name="FileName")String fileName,  @WebParam(name="Folder")String folder) {
+        return fileRemoteService.readData(fileName, folder);
     }
 
     @Override
     @WebMethod
-    public String fileExist(@WebParam(name="FileName")String fileName) {
-        return Boolean.toString(fileRemoteService.exist(fileName));
+    public String fileExist(@WebParam(name="FileName")String fileName,  @WebParam(name="Folder")String folder) {
+        return Boolean.toString(fileRemoteService.exist(fileName,folder));
     }
 
     @Override
@@ -66,13 +66,13 @@ public class EndpointCloud implements EndpointCloudAPI {
     }
 
     @Override
-    public void writeData(String fileName, byte[] dataBytes) {
-        fileRemoteService.writeData(fileName,dataBytes);
+    public void writeData(String fileName, String folder, byte[] dataBytes) {
+        fileRemoteService.writeData(fileName, folder, dataBytes);
     }
 
     @Override
-    public void createTextFile(@WebParam(name="FileName")String fileName, @WebParam(name="Text")String text) {
-        fileRemoteService.createTextFile(fileName, text);
+    public void createTextFile(@WebParam(name="FileName")String fileName, @WebParam(name="Folder")String folder, @WebParam(name="Text")String text) {
+        fileRemoteService.createTextFile(fileName, folder, text);
     }
 
     @Override

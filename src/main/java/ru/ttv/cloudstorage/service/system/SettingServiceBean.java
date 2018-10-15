@@ -3,12 +3,10 @@ package ru.ttv.cloudstorage.service.system;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
-import org.jetbrains.annotations.NotNull;
 import ru.ttv.cloudstorage.api.annotation.Loggable;
 import ru.ttv.cloudstorage.api.system.SettingService;
 
 import javax.enterprise.context.ApplicationScoped;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 

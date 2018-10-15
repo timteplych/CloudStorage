@@ -53,14 +53,14 @@ public class EndpointStorage implements EndpointStorageAPI {
 
     @Override
     @WebMethod
-    public byte[] readData(@WebParam(name="FileName")String fileName) {
-        return fileLocalService.readData(fileName);
+    public byte[] readData(@WebParam(name="FileName")String fileName, @WebParam(name="Folder")String folder) {
+        return fileLocalService.readData(fileName, folder);
     }
 
     @Override
     @WebMethod
-    public String fileExist(@WebParam(name="FileName")String fileName) {
-        return Boolean.toString(fileLocalService.exist(fileName));
+    public String fileExist(@WebParam(name="FileName")String fileName, @WebParam(name="Folder")String folder) {
+        return Boolean.toString(fileLocalService.exist(fileName,folder));
     }
 
     @Override
@@ -71,13 +71,13 @@ public class EndpointStorage implements EndpointStorageAPI {
 
     @Override
     @WebMethod
-    public void writeData(@WebParam(name="FileName")String fileName, byte[] dataBytes) {
-        fileLocalService.writeData(fileName,dataBytes);
+    public void writeData(@WebParam(name="FileName")String fileName,  @WebParam(name="Folder")String folder, @WebParam(name="DataBytes") byte[] dataBytes) {
+        fileLocalService.writeData(fileName, folder, dataBytes);
     }
 
     @Override
-    public void createTextFile(@WebParam(name="FileName")String fileName, @WebParam(name="Text")String text) {
-        fileLocalService.createTextFile(fileName, text);
+    public void createTextFile(@WebParam(name="FileName")String fileName, @WebParam(name="Folder")String folder, @WebParam(name="Text")String text) {
+        fileLocalService.createTextFile(fileName, folder, text);
     }
 
     @Override
