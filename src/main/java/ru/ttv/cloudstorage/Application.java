@@ -5,7 +5,7 @@ import ru.ttv.cloudstorage.service.system.BootStrapServiceBean;
 import javax.enterprise.inject.se.SeContainerInitializer;
 
 /**
- * Hello world!
+ * @author Timofey Teplykh
  *
  */
 public class Application
