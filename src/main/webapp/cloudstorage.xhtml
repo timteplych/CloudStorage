@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+<h:body>
+    <h3>Приложение CloudStorage для облачного хранения файлов</h3>
+    <p:tabView orientation="Top">
+        <p:tab title="Настройки">
+            <h:panelGrid columns="2" cellpadding="10">
+                <!--<p:graphicImage name="demo/images/godfather/godfather1.jpg" />-->
+                <h:outputText
+                        value="Здесь будут настройки" />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Управление">
+            <h:form>
+                <p:growl id="growl" life="2000" />
+                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                    <p:commandButton value="Старт/стоп" id="ajax" update="growl startedLabel" actionListener="#{cloudControllerBean.buttonToggleAction}" styleClass="ui-priority-primary" />
+                    <h:outputText id="startedLabel" value="#{cloudControllerBean.status}" style="font-weight: bold; color: red"/>
+                </h:panelGrid>
+            </h:form>
+        </p:tab>
+        <p:tab title="Просмотр репозитория">
+            <h:panelGrid columns="2" cellpadding="10">
+                <!--<p:graphicImage name="demo/images/godfather/godfather3.jpg" />-->
+                <h:outputText value="Здесь будет отображен репозиторий" />
+            </h:panelGrid>
+        </p:tab>
+    </p:tabView>
+</h:body>
+</html>

@@ -32,7 +32,7 @@ public class BootStrapServiceBean implements BootstrapService {
     @Loggable
     public void init() {
         settingService.init();
-        endpointService.init();
+        //endpointService.init();
         folderLocalservice.init();
         applicationService.init();
     }

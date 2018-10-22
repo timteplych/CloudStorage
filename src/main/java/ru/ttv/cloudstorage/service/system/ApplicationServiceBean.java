@@ -84,6 +84,7 @@ public class ApplicationServiceBean implements ApplicationService {
             session.logout();
             repository = null;
             session = null;
+            timerService.stop();
             return true;
         }catch (Exception e){
             error = e;
