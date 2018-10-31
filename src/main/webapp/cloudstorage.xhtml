@@ -12,13 +12,39 @@
 <h:body>
     <h3>Приложение CloudStorage для облачного хранения файлов</h3>
     <p:tabView orientation="Top">
-        <p:tab title="Настройки">
-            <h:panelGrid columns="2" cellpadding="10">
-                <!--<p:graphicImage name="demo/images/godfather/godfather1.jpg" />-->
-                <h:outputText
-                        value="Здесь будут настройки" />
-            </h:panelGrid>
-        </p:tab>
+            <p:tab title="Настройки">
+                <h:form>
+                    <h:panelGrid columns="1" cellpadding="10">
+                        <p:growl id="msgs" life="2000"/>
+                        <p:fieldset legend="Настройки Jackrabbit" toggleable="true" toggleSpeed="500" collapsed="true">
+                            <!--<p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" update="msgs" />-->
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputText value="Активность:"/>
+                                <p:inputSwitch value="#{settingControlBean.jcrActive}" />
+                                <h:outputText value="JCR URL:"/>
+                                <p:inputText  value="#{settingControlBean.jcrURL}" style="width:100%"/>
+                                <h:outputText value="JCR Login:"/>
+                                <p:inputText  value="#{settingControlBean.jcrLogin}" style="width:100%"/>
+                                <h:outputText value="JCR Password:"/>
+                                <p:inputText  value="#{settingControlBean.jcrPassword}" style="width:100%"/>
+                            </h:panelGrid>
+                        </p:fieldset>
+                        <p:fieldset legend="Настройки синхронизации" toggleable="true" toggleSpeed="500" collapsed="true">
+                            <!--<p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" update="msgs" />-->
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputText value="Активность:"/>
+                                <p:inputSwitch value="#{settingControlBean.syncActive}" />
+                                <h:outputText value="Timeout:"/>
+                                <p:inputNumber id="input1" value="#{settingControlBean.timeout}" minValue="0" decimalPlaces="0"/>
+                                <h:outputText value="Каталог синхронизации:"/>
+                                <p:inputText  value="#{settingControlBean.syncFolder}" style="width:100%"/>
+                            </h:panelGrid>
+                        </p:fieldset>
+                    </h:panelGrid>
+                    <!--<p:commandButton value="Submit" icon="ui-icon-check" update="display" oncomplete="PF('dlg').show()" />-->
+                    <p:commandButton value="Сохранить" icon="ui-icon-check" update="msgs" actionListener="#{settingControlBean.saveProperties}" styleClass="ui-priority-primary" />
+                </h:form>
+            </p:tab>
         <p:tab title="Управление">
             <h:form>
                 <p:growl id="growl" life="2000" />
@@ -30,8 +56,25 @@
         </p:tab>
         <p:tab title="Просмотр репозитория">
             <h:panelGrid columns="2" cellpadding="10">
-                <!--<p:graphicImage name="demo/images/godfather/godfather3.jpg" />-->
-                <h:outputText value="Здесь будет отображен репозиторий" />
+                <p:commandButton value="Обновить" update="folderTree" actionListener="#{storageViewBean.updateFolderTree}" icon="fa fa-fw fa fa-refresh" styleClass="ui-priority-primary" />
+                <h:outputText value="Удаленное хранилище:" />
+                <p:tree value="#{storageViewBean.root}" var="doc" orientation="horizontal" dynamic="true" id="folderTree" >
+                    <p:treeNode expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
+                        <h:outputText value="#{doc.name}"/>
+                    </p:treeNode>
+
+                    <p:treeNode type="document" icon="ui-icon-document">
+                        <h:outputText value="#{doc.name}" />
+                    </p:treeNode>
+
+                    <p:treeNode type="picture" icon="ui-icon-image">
+                        <h:outputText value="#{doc.name}" />
+                    </p:treeNode>
+
+                    <p:treeNode type="mp3" icon="ui-icon-video">
+                        <h:outputText value="#{doc.name}" />
+                    </p:treeNode>
+                </p:tree>
             </h:panelGrid>
         </p:tab>
     </p:tabView>
