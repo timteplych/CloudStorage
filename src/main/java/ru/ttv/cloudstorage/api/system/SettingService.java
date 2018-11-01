@@ -7,6 +7,8 @@ import org.jetbrains.annotations.NotNull;
 public interface SettingService {
     void init();
 
+    void saveProperties();
+
     @NotNull
     Boolean getJcrActive();
 
@@ -30,4 +32,28 @@ public interface SettingService {
 
     @NotNull
     Boolean getSyncActive();
+
+    @NotNull
+    String getSqlitePath();
+
+
+
+
+    void setJcrActive(Boolean jcrActive);
+
+    void setJcrUrl(String jcrUrl);
+
+    void setJcrLogin(String jcrLogin);
+
+    void setJcrPassword(String jcrPassword);
+
+    void setSyncFolder(String syncFolder);
+
+    void setSyncTimeout(Integer syncTimeout);
+
+    void setSyncEndpoint(String syncEndpoint);
+
+    void setSyncActive(Boolean syncActive);
+
+    void setSqlitePath(String sqlitePath);
 }

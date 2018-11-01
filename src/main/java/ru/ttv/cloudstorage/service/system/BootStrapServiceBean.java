@@ -33,6 +33,8 @@ public class BootStrapServiceBean implements BootstrapService {
     public void init() {
         settingService.init();
         endpointService.init();
+        //dbConnection.init();
+        //dbProcessing.initDB();
         folderLocalservice.init();
         applicationService.init();
     }
