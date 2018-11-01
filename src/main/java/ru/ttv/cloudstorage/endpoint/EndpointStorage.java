@@ -12,7 +12,7 @@ import javax.jws.WebService;
 /**
  * @author Timofey Teplykh
  */
-@WebService
+@WebService(serviceName = "ws/EndpointStorage")
 public class EndpointStorage implements EndpointStorageAPI {
 
     @Inject

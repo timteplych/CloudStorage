@@ -62,11 +62,22 @@ public class FileRemoteServiceBean implements FileRemoteService {
     @Override
     @SneakyThrows
     public void remove(@Nullable final String name) {
-        if(name == null || name.isEmpty()) return;
-        final Node root = applicationService.getRootNode();
-        if(root == null) return;
-        final Node node = root.getNode(name);
-        node.remove();
+//        if(name == null || name.isEmpty()) return;
+//        final Node root = applicationService.getRootNode();
+//        if(root == null) return;
+//        final Node node = root.getNode(name);
+//        node.remove();
+
+        if (name == null || name.isEmpty()) return;
+        Node node = null;
+        try {
+            node = applicationService.session().getNode(name);
+            node.remove();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        applicationService.save();
     }
 
     @Override

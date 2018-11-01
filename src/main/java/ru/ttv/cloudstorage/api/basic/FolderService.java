@@ -20,4 +20,6 @@ public interface FolderService {
 
     void clearRoot();
 
+    boolean folderExist(String folderName);
+
 }

@@ -15,7 +15,6 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
 /**
  * @author Timofey Teplykh
  */
@@ -28,7 +27,7 @@ public class FileLocalServiceBean implements FileLocalService {
     @NotNull
     @Override
     public List<String> getListFileNameRoot(final String folder) {
-        final File file = new File(folder);
+        final File file = new File(settingService.getSyncFolder()+folder);
         final String[] files = file.list((current, name) -> new File(current,name).isFile());
         if(files == null) return Collections.emptyList();
         return Arrays.asList(files);
@@ -70,7 +69,7 @@ public class FileLocalServiceBean implements FileLocalService {
     @Override
     public void remove(@Nullable final String name) {
         if(name == null || name.isEmpty()) return;
-        final File file = new File(getRoot(), name);
+        final File file = new File(getRoot()+name);
         file.delete();
     }
 
