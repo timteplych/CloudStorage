@@ -1,5 +1,6 @@
 package ru.ttv.cloudstorage.webapp.webapi;
 
+import org.jetbrains.annotations.NotNull;
 import org.primefaces.model.TreeNode;
 import ru.ttv.cloudstorage.webapp.document.DocumentService;
 
@@ -8,12 +9,13 @@ import ru.ttv.cloudstorage.webapp.document.DocumentService;
  */
 public interface StorageViewAPI {
 
-    public void init();
+    void init();
 
-    public void setService(DocumentService service);
+    void setService(DocumentService service);
 
-    public TreeNode getRoot();
+    @NotNull
+    TreeNode getRoot();
 
-    public void updateFolderTree();
+    void updateFolderTree();
 
 }

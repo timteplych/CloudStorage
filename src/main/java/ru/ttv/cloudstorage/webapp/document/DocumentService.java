@@ -1,5 +1,6 @@
 package ru.ttv.cloudstorage.webapp.document;
 
+import org.jetbrains.annotations.Nullable;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import ru.ttv.cloudstorage.api.remote.FileRemoteService;
@@ -29,8 +30,8 @@ public class DocumentService implements DocumentServiceAPI {
         return root;
     }
 
-    private void buildFSTree(String folder, TreeNode root) {
-        List<String> subFolders = folderRemoteService.getListFolderNameRoot(folder);
+    private void buildFSTree(@Nullable final String folder, @Nullable final TreeNode root) {
+        final List<String> subFolders = folderRemoteService.getListFolderNameRoot(folder);
         for (int i = 0; i <= subFolders.size()-1 ; i++) {
             String currentFolder = subFolders.get(i);
             TreeNode folderNode = new DefaultTreeNode(new Document(currentFolder,"-","Folder"),root);
@@ -39,10 +40,11 @@ public class DocumentService implements DocumentServiceAPI {
         }
     }
 
-    private void synchronizeFiles(String currentFolder, TreeNode node) {
-        List<String> files = fileRemoteService.getListFileNameRoot(currentFolder);
+    private void synchronizeFiles(@Nullable final String currentFolder,@Nullable final TreeNode node) {
+        final List<String> files = fileRemoteService.getListFileNameRoot(currentFolder);
         for (int i = 0; i <= files.size()-1 ; i++) {
             TreeNode fileNode = new DefaultTreeNode("document",new Document(files.get(i),"1","File"),node);
         }
     }
+
 }

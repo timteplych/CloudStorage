@@ -10,6 +10,7 @@ import javax.jcr.Session;
  * @author Timofey Teplykh
  */
 public interface ApplicationService {
+
     void init();
 
     void shutdown();
@@ -33,4 +34,5 @@ public interface ApplicationService {
 
     @Nullable
     Node getRootNode();
+
 }

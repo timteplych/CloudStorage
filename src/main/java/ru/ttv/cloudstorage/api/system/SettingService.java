@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
  *@author Timofey Teplykh
  */
 public interface SettingService {
+
     void init();
 
     void saveProperties();
@@ -36,9 +37,6 @@ public interface SettingService {
     @NotNull
     String getSqlitePath();
 
-
-
-
     void setJcrActive(Boolean jcrActive);
 
     void setJcrUrl(String jcrUrl);
@@ -56,4 +54,5 @@ public interface SettingService {
     void setSyncActive(Boolean syncActive);
 
     void setSqlitePath(String sqlitePath);
+
 }

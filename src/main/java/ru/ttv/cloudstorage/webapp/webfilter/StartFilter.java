@@ -1,5 +1,7 @@
 package ru.ttv.cloudstorage.webapp.webfilter;
 
+import lombok.SneakyThrows;
+
 import javax.faces.application.ResourceHandler;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -12,8 +14,10 @@ import java.io.IOException;
  */
 @WebFilter("/*")
 public class StartFilter implements Filter {
+
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    @SneakyThrows
+    public void init(FilterConfig filterConfig) {
 
     }
 
@@ -43,4 +47,5 @@ public class StartFilter implements Filter {
     public void destroy() {
 
     }
+
 }

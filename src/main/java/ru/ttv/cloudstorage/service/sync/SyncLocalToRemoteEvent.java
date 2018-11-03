@@ -1,6 +1,8 @@
 package ru.ttv.cloudstorage.service.sync;
 
 
+import lombok.SneakyThrows;
+import org.jetbrains.annotations.Nullable;
 import ru.ttv.cloudstorage.api.db.DBProcessingAPI;
 import ru.ttv.cloudstorage.api.local.FileLocalService;
 import ru.ttv.cloudstorage.api.local.FolderLocalService;
@@ -44,16 +46,10 @@ public class SyncLocalToRemoteEvent implements SyncLocalToRemoteEventAPI {
 
 
     @Override
+    @SneakyThrows
     public void fire() {
-        //FIXME
-        //TODO
-        //Синхронизируем всё с локального на удаленное хранилище
         synchronize("");
-        //TODO
-        // Пробегаемся по локал ДБ и смотрим что есть в локал ДБ и чего одновременно нет на локал каталоге
-        // и удаляем это в ремоут хранилище и БД и в локал бд
-        ResultSet resultSet = dbProcessing.getAllItems(DISPOSITION_LOCAL);
-        try {
+        final ResultSet resultSet = dbProcessing.getAllItems(DISPOSITION_LOCAL);
             while(resultSet.next()){
                 String path =resultSet.getString(3)+"/"+resultSet.getString(2);
                 if(TYPE_FOLDER.equals(resultSet.getString(4))){
@@ -74,17 +70,12 @@ public class SyncLocalToRemoteEvent implements SyncLocalToRemoteEventAPI {
                     }
                 }
             }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
     }
 
-    private void synchronize(String folder) {
-        List<String> subFolders = folderLocalService.getListFolderNameRoot(folder);
+    private void synchronize(@Nullable final String folder) {
+        final List<String> subFolders = folderLocalService.getListFolderNameRoot(folder);
         for (int i = 0; i <= subFolders.size()-1 ; i++) {
             String currentFolder = subFolders.get(i);
-            //TODO
-            //необходимо проверять на существование в удаленном хранилище
             if(!folderRemoteService.folderExist(folder+"/"+currentFolder)){
                 folderRemoteService.createFolder(folder+"/"+currentFolder);
             }
@@ -99,8 +90,8 @@ public class SyncLocalToRemoteEvent implements SyncLocalToRemoteEventAPI {
         }
     }
 
-    private void synchronizeFiles(String currentFolder) {
-        List<String> files = fileLocalService.getListFileNameRoot(currentFolder);
+    private void synchronizeFiles(@Nullable final String currentFolder) {
+        final List<String> files = fileLocalService.getListFileNameRoot(currentFolder);
         for (int i = 0; i <= files.size()-1 ; i++) {
             if(!fileRemoteService.exist(files.get(i),currentFolder)){
                 fileRemoteService.writeData(files.get(i),currentFolder,fileLocalService.readData(files.get(i),currentFolder));

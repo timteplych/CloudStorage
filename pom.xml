@@ -121,67 +121,6 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-            <!--<groupId>org.apache.maven.plugins</groupId>-->
-            <!--<artifactId>maven-dependency-plugin</artifactId>-->
-            <!--<executions>-->
-            <!--<execution>-->
-            <!--<id>copy-dependencies</id>-->
-            <!--<phase>prepare-package</phase>-->
-            <!--<goals>-->
-            <!--<goal>copy-dependencies</goal>-->
-            <!--</goals>-->
-            <!--<configuration>-->
-            <!--<outputDirectory>${project.build.directory}/cloudstorage/lib</outputDirectory>-->
-            <!--<overWriteReleases>false</overWriteReleases>-->
-            <!--<overWriteSnapshots>false</overWriteSnapshots>-->
-            <!--<overWriteIfNewer>true</overWriteIfNewer>-->
-            <!--</configuration>-->
-            <!--</execution>-->
-            <!--</executions>-->
-            <!--</plugin>-->
-            <!--<plugin>-->
-            <!--<groupId>org.apache.maven.plugins</groupId>-->
-            <!--<artifactId>maven-jar-plugin</artifactId>-->
-            <!--<configuration>-->
-            <!--<archive>-->
-            <!--<manifest>-->
-            <!--<addClasspath>true</addClasspath>-->
-            <!--<classpathPrefix>../lib/</classpathPrefix>-->
-            <!--<mainClass>ru.ttv.cloudstorage.Application-</mainClass>-->
-            <!--</manifest>-->
-            <!--</archive>-->
-            <!--</configuration>-->
-            <!--</plugin>-->
-            <!--<plugin>-->
-            <!--<groupId>org.apache.maven.plugins</groupId>-->
-            <!--<artifactId>maven-dependency-plugin</artifactId>-->
-            <!--<version>3.0.1</version>-->
-            <!--<executions>-->
-            <!--<execution>-->
-            <!--<id>copy</id>-->
-            <!--<phase>install</phase>-->
-            <!--<goals>-->
-            <!--<goal>copy</goal>-->
-            <!--</goals>-->
-            <!--</execution>-->
-            <!--</executions>-->
-            <!--<configuration>-->
-            <!--<artifactItems>-->
-            <!--<artifactItem>-->
-            <!--<groupId>ru.ttv.cloudstorage</groupId>-->
-            <!--<artifactId>cloudstorage</artifactId>-->
-            <!--<version>1.0.0</version>-->
-            <!--<type>jar</type>-->
-            <!--<overWrite>true</overWrite>-->
-            <!--<outputDirectory>${project.build.directory}/cloudstorage/bin</outputDirectory>-->
-            <!--<destFileName>cloudstorage.jar</destFileName>-->
-            <!--</artifactItem>-->
-            <!--</artifactItems>-->
-            <!--<overWriteReleases>false</overWriteReleases>-->
-            <!--<overWriteSnapshots>true</overWriteSnapshots>-->
-            <!--</configuration>-->
-            <!--</plugin>-->
         </plugins>
     </build>
 </project>

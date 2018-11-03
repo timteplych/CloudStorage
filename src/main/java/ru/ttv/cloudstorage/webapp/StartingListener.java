@@ -16,13 +16,13 @@ import javax.servlet.ServletContext;
 public class StartingListener {
 
     @Inject
-    BootstrapService bootstrapService;
+    private BootstrapService bootstrapService;
 
     public void init(@Observes @Initialized(ApplicationScoped.class) ServletContext context){
         bootstrapService.init();
     }
 
     public void destroy(@Observes @Destroyed(ApplicationScoped.class) ServletContext context) {
-        // Perform action during application shutdown
     }
+
 }

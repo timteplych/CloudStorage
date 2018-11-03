@@ -29,15 +29,15 @@ public class FileRemoteServiceBean implements FileRemoteService {
     @Nullable
     @Override
     @SneakyThrows
-    public byte[] readData(String name, String folder) {
+    public byte[] readData(@Nullable final String name, @Nullable final String folder) {
         Node root;
-        if(name == null || name.isEmpty()) return new byte[]{};
-        if(folder == null || folder.isEmpty()){
+        if (name == null || name.isEmpty()) return new byte[]{};
+        if (folder == null || folder.isEmpty()) {
             root = applicationService.getRootNode();
-        }else{
+        } else {
             root = applicationService.session().getNode(folder);
         }
-        if(root == null) return new byte[]{};
+        if (root == null) return new byte[]{};
         final Node node = root.getNode(name);
         final Node propertyNode = node.getNode("jcr:content");
         final Binary binary = propertyNode.getProperty("jcr:data").getBinary();
@@ -46,62 +46,51 @@ public class FileRemoteServiceBean implements FileRemoteService {
 
     @Override
     @SneakyThrows
-    public boolean exist(String name, String folder) {
+    public boolean exist(@Nullable final String name, @Nullable final String folder) {
         Node root;
-        if(name == null || name.isEmpty()) return false;
-        if(folder == null || folder.isEmpty()){
+        if (name == null || name.isEmpty()) return false;
+        if (folder == null || folder.isEmpty()) {
             root = applicationService.getRootNode();
-        }else{
+        } else {
             root = applicationService.session().getNode(folder);
         }
 
-        if(root == null) return false;
+        if (root == null) return false;
         return root.hasNode(name);
     }
 
     @Override
     @SneakyThrows
     public void remove(@Nullable final String name) {
-//        if(name == null || name.isEmpty()) return;
-//        final Node root = applicationService.getRootNode();
-//        if(root == null) return;
-//        final Node node = root.getNode(name);
-//        node.remove();
-
         if (name == null || name.isEmpty()) return;
         Node node = null;
-        try {
-            node = applicationService.session().getNode(name);
-            node.remove();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        node = applicationService.session().getNode(name);
+        node.remove();
         applicationService.save();
     }
 
     @Override
     @SneakyThrows
-    public void createTextFile(@Nullable final String fileName, String folder, @Nullable final String text) {
-        if(text == null) return;
+    public void createTextFile(@Nullable final String fileName, @Nullable final String folder, @Nullable final String text) {
+        if (text == null) return;
         writeData(fileName, folder, text.getBytes());
         applicationService.save();
     }
 
     @Override
     @SneakyThrows
-    public void writeData(@Nullable final String fileName,String folder, byte[] data) {
-        if(fileName == null || fileName.isEmpty()) return;
+    public void writeData(@Nullable final String fileName, @Nullable final String folder, @Nullable final byte[] data) {
+        if (fileName == null || fileName.isEmpty()) return;
         final Session session = applicationService.session();
-        if(session == null) return;
+        if (session == null) return;
         Node root;
-        if(folder == null || folder.isEmpty()){
+        if (folder == null || folder.isEmpty()) {
             root = session.getRootNode();
-        }else{
+        } else {
             root = session.getNode(folder);
         }
 
-        final Node file = root.addNode(fileName,"nt:file");
+        final Node file = root.addNode(fileName, "nt:file");
         final Node contentNode = file.addNode("jcr:content", "nt:resource");
         final ByteArrayInputStream stream = new ByteArrayInputStream(data);
         final Binary binary = session.getValueFactory().createBinary(stream);
@@ -112,35 +101,30 @@ public class FileRemoteServiceBean implements FileRemoteService {
 
     @NotNull
     @Override
-    public List<String> getListFileNameRoot(String folder) {
+    @SneakyThrows
+    public List<String> getListFileNameRoot(@Nullable final String folder) {
         Node root = null;
-        try {
-            if(folder == null || folder.isEmpty()){
-                root = applicationService.getRootNode();
-            }else{
-                final Session session = applicationService.session();
-                root = session.getNode(folder);
-            }
-
-            if(root == null) return Collections.emptyList();
-            final List<String> result = new ArrayList<>();
-            final NodeIterator nt = root.getNodes();
-            while (nt.hasNext()){
-                final Node node = nt.nextNode();
-                final NodeType nodeType = node.getPrimaryNodeType();
-                final boolean isFile = nodeType.isNodeType("nt:file");
-                if(isFile) result.add(node.getName());
-            }
-            return result;
-        }catch (final Exception e){
-            e.printStackTrace();
-            return Collections.emptyList();
+        if (folder == null || folder.isEmpty()) {
+            root = applicationService.getRootNode();
+        } else {
+            final Session session = applicationService.session();
+            root = session.getNode(folder);
         }
+        if (root == null) return Collections.emptyList();
+        final List<String> result = new ArrayList<>();
+        final NodeIterator nt = root.getNodes();
+        while (nt.hasNext()) {
+            final Node node = nt.nextNode();
+            final NodeType nodeType = node.getPrimaryNodeType();
+            final boolean isFile = nodeType.isNodeType("nt:file");
+            if (isFile) result.add(node.getName());
+        }
+        return result;
     }
 
     @Override
     public void printListFileNameRoot() {
-        for(final String name: getListFileNameRoot("")){
+        for (final String name : getListFileNameRoot("")) {
             System.out.println(name);
         }
     }
@@ -150,11 +134,12 @@ public class FileRemoteServiceBean implements FileRemoteService {
     public void clearRoot() {
         final Node root = applicationService.getRootNode();
         final NodeIterator nt = root.getNodes();
-        while (nt.hasNext()){
+        while (nt.hasNext()) {
             final Node node = nt.nextNode();
             final NodeType nodeType = node.getPrimaryNodeType();
             final boolean isFile = nodeType.isNodeType("nt:file");
-            if(isFile) node.remove();
+            if (isFile) node.remove();
         }
     }
+
 }

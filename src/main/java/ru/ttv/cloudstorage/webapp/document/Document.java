@@ -13,6 +13,7 @@ import java.util.Objects;
 @Getter
 @Setter
 public class Document implements Serializable, Comparable<Document>  {
+
     private String name;
     private String size;
     private String type;

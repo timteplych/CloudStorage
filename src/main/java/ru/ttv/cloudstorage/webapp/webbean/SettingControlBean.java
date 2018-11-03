@@ -19,6 +19,8 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class SettingControlBean implements SettingControlAPI {
 
+    private static final String SETTINGS_SAVED_MSG = "Настройки сохранены!";
+
     @Inject
     private SettingService settingService;
 
@@ -79,7 +81,7 @@ public class SettingControlBean implements SettingControlAPI {
 
     public void saveProperties(){
         settingService.saveProperties();
-        addMessage("Настройки сохранены!");
+        addMessage(SETTINGS_SAVED_MSG);
     }
 
     private void addMessage(String summary) {

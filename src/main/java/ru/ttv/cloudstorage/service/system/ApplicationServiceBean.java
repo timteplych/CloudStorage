@@ -125,4 +125,5 @@ public class ApplicationServiceBean implements ApplicationService {
         if(!status()) return null;
         return session.getRootNode();
     }
+
 }

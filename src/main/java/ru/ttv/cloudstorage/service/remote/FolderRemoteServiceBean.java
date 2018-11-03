@@ -27,33 +27,29 @@ public class FolderRemoteServiceBean implements FolderRemoteService {
 
     @Override
     @NotNull
-    public List<String> getListFolderNameRoot(String folder) {
+    @SneakyThrows
+    public List<String> getListFolderNameRoot(@Nullable final String folder) {
         final List<String> result = new ArrayList<>();
         Node root = null;
-        try {
-            if (folder == null || folder.isEmpty()) {
-                root = applicationService.getRootNode();
-            } else {
-                root = applicationService.session().getNode(folder);
-            }
-
-            final NodeIterator nt = root.getNodes();
-            while (nt.hasNext()) {
-                final Node node = nt.nextNode();
-                final NodeType nodeType = node.getPrimaryNodeType();
-                final boolean isFolder = nodeType.isNodeType("nt:folder");
-                if (isFolder) result.add(node.getName());
-            }
-            return result;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return result;
+        if (folder == null || folder.isEmpty()) {
+            root = applicationService.getRootNode();
+        } else {
+            root = applicationService.session().getNode(folder);
         }
+
+        final NodeIterator nt = root.getNodes();
+        while (nt.hasNext()) {
+            final Node node = nt.nextNode();
+            final NodeType nodeType = node.getPrimaryNodeType();
+            final boolean isFolder = nodeType.isNodeType("nt:folder");
+            if (isFolder) result.add(node.getName());
+        }
+        return result;
     }
 
     @Override
     @SneakyThrows
-    public void createFolder(String folderName) {
+    public void createFolder(@Nullable final String folderName) {
         @Nullable final Node root = applicationService.getRootNode();
         if (root == null) return;
         String[] folderArr = folderName.split("/");
@@ -64,7 +60,7 @@ public class FolderRemoteServiceBean implements FolderRemoteService {
             root.addNode(folderName, "nt:folder");
         } else {
             for (int i = 0; i <= folderArr.length - 1; i++) {
-                if(folderArr[i].isEmpty()) continue;
+                if (folderArr[i].isEmpty()) continue;
                 currentPath = currentPath + "/" + folderArr[i];
                 if (session.nodeExists(currentPath)) {
                     currentNode = session.getNode(currentPath);
@@ -78,7 +74,7 @@ public class FolderRemoteServiceBean implements FolderRemoteService {
 
     @Override
     @SneakyThrows
-    public boolean folderExist(String folderName) {
+    public boolean folderExist(@Nullable final String folderName) {
         Session session = applicationService.session();
         return session.nodeExists(folderName);
     }
@@ -108,17 +104,13 @@ public class FolderRemoteServiceBean implements FolderRemoteService {
     public void removeFolder(@Nullable final String folderName) {
         String fld = folderName;
         if (folderName == null || folderName.isEmpty()) return;
-        if(!folderName.startsWith("/")){
-            fld = "/"+folderName;
+        if (!folderName.startsWith("/")) {
+            fld = "/" + folderName;
         }
         Node node = null;
-        try {
-            node = applicationService.session().getNode(fld);
-            node.remove();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        node = applicationService.session().getNode(fld);
+        node.remove();
         applicationService.save();
     }
+
 }

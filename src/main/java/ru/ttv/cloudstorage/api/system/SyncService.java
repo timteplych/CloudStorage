@@ -4,6 +4,7 @@ package ru.ttv.cloudstorage.api.system;
  * @author Timofey Teplykh
  */
 public interface SyncService {
+
     boolean status();
 
     void sync();
@@ -11,4 +12,5 @@ public interface SyncService {
     boolean start();
 
     boolean stop();
+
 }

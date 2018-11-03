@@ -16,6 +16,7 @@ import javax.inject.Inject;
 @ManagedBean
 @ApplicationScoped
 public class CloudControllerBean implements CloudControllerAPI {
+
     private static final String STATUS_ACTIVE = "Приложение запущено";
     private static final String STATUS_STOPPED = "Приложение остановлено";
     private String status = STATUS_STOPPED;
@@ -44,8 +45,9 @@ public class CloudControllerBean implements CloudControllerAPI {
 
     }
 
-    private void addMessage(String summary) {
+    private void addMessage(final String summary) {
         FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,null);
         FacesContext.getCurrentInstance().addMessage(null, facesMessage);
     }
+
 }

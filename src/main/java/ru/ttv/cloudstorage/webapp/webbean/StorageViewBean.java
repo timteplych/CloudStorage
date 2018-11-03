@@ -1,5 +1,6 @@
 package ru.ttv.cloudstorage.webapp.webbean;
 
+import org.jetbrains.annotations.NotNull;
 import org.primefaces.model.TreeNode;
 import ru.ttv.cloudstorage.webapp.document.DocumentService;
 import ru.ttv.cloudstorage.webapp.webapi.StorageViewAPI;
@@ -26,11 +27,12 @@ public class StorageViewBean implements StorageViewAPI {
     }
 
     @Override
-    public void setService(DocumentService service) {
+    public void setService(final DocumentService service) {
 
     }
 
     @Override
+    @NotNull
     public TreeNode getRoot() {
         return root;
     }

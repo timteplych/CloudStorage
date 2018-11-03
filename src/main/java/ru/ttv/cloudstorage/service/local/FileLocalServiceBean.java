@@ -54,14 +54,14 @@ public class FileLocalServiceBean implements FileLocalService {
     @Nullable
     @Override
     @SneakyThrows
-    public byte[] readData(@Nullable final String name, String folder) {
+    public byte[] readData(@Nullable final String name, @Nullable final String folder) {
         if(name == null || name.isEmpty()) return new byte[]{};
         final File file = new File(getRoot()+folder,name);
         return Files.readAllBytes(file.toPath());
     }
 
     @Override
-    public boolean exist(@Nullable final String name, String folder) {
+    public boolean exist(@Nullable final String name, @Nullable final String folder) {
         if(name == null || name.isEmpty()) return false;
         final File file = new File(getRoot()+folder, name);
         return file.exists();
@@ -84,7 +84,7 @@ public class FileLocalServiceBean implements FileLocalService {
     }
 
     @Override
-    public void createTextFile(@Nullable final String fileName, String folder, @Nullable final String text) {
+    public void createTextFile(@Nullable final String fileName, @Nullable final String folder, @Nullable final String text) {
         if(text == null) return;
         writeData(fileName, folder, text.getBytes());
     }
@@ -93,4 +93,5 @@ public class FileLocalServiceBean implements FileLocalService {
     private File getRoot(){
         return new File(settingService.getSyncFolder());
     }
+
 }

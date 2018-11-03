@@ -31,7 +31,7 @@ public class FolderLocalServiceBean implements FolderLocalService {
 
     @Override
     @NotNull
-    public List<String> getListFolderNameRoot(String directory) {
+    public List<String> getListFolderNameRoot(@Nullable final String directory) {
         final File root = new File(settingService.getSyncFolder()+directory);
         final String[] directories = root.list((current, name) -> new File(current,name).isDirectory());
         return Arrays.asList(directories);
@@ -61,12 +61,7 @@ public class FolderLocalServiceBean implements FolderLocalService {
 
     @Override
     public void clearRoot() {
-//        final File root = new File(settingService.getSyncFolder());
-//        final List<String> directories = getListFolderNameRoot("");
-//        for(final String name: directories){
-//            final File file = new File(root, name);
-//            file.delete();
-//        }
+
     }
 
     @NotNull
@@ -75,7 +70,7 @@ public class FolderLocalServiceBean implements FolderLocalService {
     }
 
     @Override
-    public boolean folderExist(@Nullable String folderName) {
+    public boolean folderExist(@Nullable final String folderName) {
         if(folderName == null || folderName.isEmpty()) return false;
         final File folder = new File(getRoot()+folderName);
         return folder.exists();

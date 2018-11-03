@@ -14,6 +14,8 @@ import javax.jws.WebService;
 @WebService
 public class EndpointApplication implements EndpointApplicationAPI {
 
+    private static final String STATUS_SUCCESS = "success";
+
     @Inject
     private ApplicationService applicationService;
 
@@ -23,14 +25,14 @@ public class EndpointApplication implements EndpointApplicationAPI {
     @Override
     @WebMethod
     public String ping(){
-        return "success";
+        return STATUS_SUCCESS;
     }
 
     @Override
     @WebMethod
     public String shutdown(){
         applicationService.shutdown();
-        return "success";
+        return STATUS_SUCCESS;
     }
 
     @Override
@@ -61,7 +63,7 @@ public class EndpointApplication implements EndpointApplicationAPI {
     @WebMethod
     public String sync(){
         syncService.sync();
-        return "success";
+        return STATUS_SUCCESS;
     }
 
     @Override
@@ -75,7 +77,5 @@ public class EndpointApplication implements EndpointApplicationAPI {
     public String stop(){
         return Boolean.toString(syncService.stop());
     }
-
-
 
 }

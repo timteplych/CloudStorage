@@ -7,5 +7,5 @@ import org.primefaces.model.TreeNode;
  */
 public interface DocumentServiceAPI {
 
-    public TreeNode createDocuments();
+    TreeNode createDocuments();
 }

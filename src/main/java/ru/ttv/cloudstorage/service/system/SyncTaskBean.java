@@ -1,5 +1,6 @@
 package ru.ttv.cloudstorage.service.system;
 
+import org.jetbrains.annotations.NotNull;
 import ru.ttv.cloudstorage.api.system.SyncService;
 import ru.ttv.cloudstorage.api.system.SyncTask;
 
@@ -19,6 +20,7 @@ public class SyncTaskBean extends TimerTask implements SyncTask {
         return super.cancel();
     }
 
+    @NotNull
     @Override
     public TimerTask get(){
         return this;
@@ -28,4 +30,5 @@ public class SyncTaskBean extends TimerTask implements SyncTask {
     public void run(){
         syncService.sync();
     }
+
 }

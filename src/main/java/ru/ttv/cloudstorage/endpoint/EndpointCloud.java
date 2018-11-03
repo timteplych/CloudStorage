@@ -84,4 +84,5 @@ public class EndpointCloud implements EndpointCloudAPI {
     public void clearFilesRoot() {
         fileRemoteService.clearRoot();
     }
+
 }

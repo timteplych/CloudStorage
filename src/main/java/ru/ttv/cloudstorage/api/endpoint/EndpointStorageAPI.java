@@ -7,10 +7,7 @@ import javax.jws.WebMethod;
  */
 public interface EndpointStorageAPI extends EndpointDataAPI {
 
-    //Folder methods
     @WebMethod
     public void init();
-
-    //File methods
 
 }

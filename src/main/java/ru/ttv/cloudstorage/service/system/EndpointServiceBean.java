@@ -20,24 +20,14 @@ public class EndpointServiceBean implements EndpointService {
     private SettingService settingService;
 
     @Inject
-    private EndpointSettingAPI endpointSettingAPI;
-
-    @Inject
-    private EndpointSyncAPI endpointSyncAPI;
-
-    @Inject
     private EndpointApplicationAPI endpointApplicationAPI;
 
     @Inject
     private EndpointCloudAPI endpointCloudAPI;
 
-    @Inject
-    private EndpointStorageAPI endpointStorageAPI;
-
     @Loggable
     @Override
     public void init() {
-        //registry(endpointStorageAPI, endpointCloudAPI, endpointSettingAPI, endpointSyncAPI, endpointApplicationAPI);
         registry(endpointCloudAPI,endpointApplicationAPI);
     }
 
@@ -68,4 +58,5 @@ public class EndpointServiceBean implements EndpointService {
     public void start() {
 
     }
+
 }

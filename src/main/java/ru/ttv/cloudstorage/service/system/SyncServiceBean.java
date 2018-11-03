@@ -27,6 +27,7 @@ public class SyncServiceBean implements SyncService {
 
         syncRemoteToLocalEvent.fire();
         syncLocalToRemoteEvent.fire();
+
     }
 
     @Override
@@ -45,4 +46,5 @@ public class SyncServiceBean implements SyncService {
     public boolean stop() {
         return timerService.stop();
     }
+
 }
