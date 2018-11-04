@@ -11,7 +11,7 @@ import javax.interceptor.InvocationContext;
  */
 @Loggable
 @Interceptor
-public class LoginInterceptor {
+public class LogInterceptor {
 
     @AroundInvoke
     public Object intercept(final InvocationContext context) throws Exception{
