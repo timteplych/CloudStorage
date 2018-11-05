@@ -101,7 +101,6 @@ public class FolderRemoteServiceBean implements FolderRemoteService {
     }
 
     @Override
-    //@SneakyThrows
     public void removeFolder(@Nullable final String folderName) {
         String fld = folderName;
         if (folderName == null || folderName.isEmpty()) return;
