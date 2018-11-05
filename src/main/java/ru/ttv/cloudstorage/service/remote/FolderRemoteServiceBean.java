@@ -10,6 +10,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.nodetype.NodeType;
 import java.util.ArrayList;
@@ -100,7 +101,7 @@ public class FolderRemoteServiceBean implements FolderRemoteService {
     }
 
     @Override
-    @SneakyThrows
+    //@SneakyThrows
     public void removeFolder(@Nullable final String folderName) {
         String fld = folderName;
         if (folderName == null || folderName.isEmpty()) return;
@@ -108,8 +109,12 @@ public class FolderRemoteServiceBean implements FolderRemoteService {
             fld = "/" + folderName;
         }
         Node node = null;
-        node = applicationService.session().getNode(fld);
-        node.remove();
+        try {
+            node = applicationService.session().getNode(fld);
+            node.remove();
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+        }
         applicationService.save();
     }
 

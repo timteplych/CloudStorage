@@ -40,7 +40,6 @@ public class BootStrapServiceBean implements BootstrapService {
     @Loggable
     public void init() {
         settingService.init();
-        endpointService.init();
         dbConnection.init();
         dbProcessing.initDB();
         folderLocalservice.init();

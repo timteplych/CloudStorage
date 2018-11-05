@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Timofey Teplykh
  */
-@WebService
+@WebService(serviceName = "ws/EndpointCloud")
 public class EndpointCloud implements EndpointCloudAPI {
 
     @Inject

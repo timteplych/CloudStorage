@@ -3,6 +3,7 @@ package ru.ttv.cloudstorage.service.sync;
 
 import lombok.SneakyThrows;
 import org.jetbrains.annotations.Nullable;
+import ru.ttv.cloudstorage.api.annotation.RemoteToLocalSync;
 import ru.ttv.cloudstorage.api.db.DBProcessingAPI;
 import ru.ttv.cloudstorage.api.local.FileLocalService;
 import ru.ttv.cloudstorage.api.local.FolderLocalService;
@@ -10,7 +11,9 @@ import ru.ttv.cloudstorage.api.remote.FileRemoteService;
 import ru.ttv.cloudstorage.api.remote.FolderRemoteService;
 import ru.ttv.cloudstorage.api.sync.SyncRemoteToLocalEventAPI;
 import ru.ttv.cloudstorage.api.system.ApplicationService;
+import ru.ttv.cloudstorage.api.system.SyncService;
 
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,7 +49,7 @@ public class SyncRemoteToLocalEvent implements SyncRemoteToLocalEventAPI {
 
     @Override
     @SneakyThrows
-    public void fire() {
+    public void doSynchronize(@Observes @RemoteToLocalSync SyncService syncService) {
         synchronize("");
         final ResultSet resultSet = dbProcessing.getAllItems(DISPOSITION_REMOTE);
         while (resultSet.next()) {

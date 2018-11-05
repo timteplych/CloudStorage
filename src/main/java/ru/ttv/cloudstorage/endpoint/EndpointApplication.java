@@ -11,7 +11,7 @@ import javax.jws.WebService;
 /**
  * @author Timofey Teplykh
  */
-@WebService
+@WebService(serviceName = "ws/EndpointApplication")
 public class EndpointApplication implements EndpointApplicationAPI {
 
     private static final String STATUS_SUCCESS = "success";
